@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - تطبيق سوبلكس</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .privacy-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 2rem 0 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #764ba2;
+        }
+
+        .section p, .section li {
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .section ul {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .section li::marker {
+            color: #667eea;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-info h2::before {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .privacy-card {
+                padding: 2rem;
+                margin: 1rem 0;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <div class="container">
+        <div class="privacy-card">
+            <div class="header">
+                <h1>سياسة الخصوصية - سوبلكس</h1>
+                <p>خصوصيتك مهمة بالنسبة لنا. تشرح هذه السياسة كيفية جمع واستخدام وحماية معلوماتك الشخصية في تطبيق سوبلكس للتواصل الاجتماعي.</p>
+            </div>
+
+            <div class="last-updated">
+                آخر تحديث: 10 يوليو 2025
+            </div>
+
+            <div class="section">
+                <h2>مقدمة</h2>
+                <p>مرحباً بك في سياسة الخصوصية الخاصة بتطبيق "سوبلكس" - منصة التواصل الاجتماعي المبتكرة لمشاركة الفيديوهات القصيرة والبث المباشر. هذا المستند يوضح كيفية تعاملنا مع معلوماتك الشخصية عند استخدامك لخدماتنا.</p>
+                <p>نحن ملتزمون بحماية خصوصيتك وضمان أمان بياناتك الشخصية. باستخدامك لتطبيق سوبلكس وخدماتنا، فإنك توافق على جمع واستخدام المعلومات وفقاً لهذه السياسة.</p>
+            </div>
+
+            <div class="section">
+                <h2>المعلومات التي نجمعها</h2>
+                <h3>المعلومات الشخصية</h3>
+                <p>قد نجمع الأنواع التالية من المعلومات الشخصية:</p>
+                <ul>
+                    <li>الاسم ومعلومات الاتصال (عنوان البريد الإلكتروني، رقم الهاتف)</li>
+                    <li>بيانات الحساب ومعلومات الملف الشخصي والصورة الشخصية</li>
+                    <li>معلومات الدفع والفواتير للمشاركة في "تحدي المشاهير" والعملات الافتراضية</li>
+                    <li>تفضيلات التواصل وسجل المحادثات</li>
+                    <li>محتوى الفيديوهات والصور التي تقوم بتحميلها ومشاركتها</li>
+                    <li>بيانات البث المباشر والتفاعلات مع المتابعين</li>
+                    <li>معلومات المشاركة في المسابقات والجوائز</li>
+                </ul>
+
+                <h3>معلومات الاستخدام والمحتوى</h3>
+                <p>نجمع تلقائياً معلومات معينة حول استخدامك لتطبيق سوبلكس:</p>
+                <ul>
+                    <li>معلومات الجهاز (عنوان IP، نوع المتصفح، نظام التشغيل)</li>
+                    <li>أنماط الاستخدام والتفضيلات لخوارزمية المحتوى المخصص</li>
+                    <li>بيانات السجلات والتحليلات</li>
+                    <li>ملفات تعريف الارتباط وتقنيات التتبع المماثلة</li>
+                    <li>معلومات التفاعل مع الفيديوهات (الإعجابات، التعليقات، المشاركات)</li>
+                    <li>بيانات استخدام الفلاتر وأدوات المونتاج</li>
+                    <li>سجل البحث وتفضيلات المحتوى</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>كيفية استخدام معلوماتك</h2>
+                <p>نستخدم المعلومات المجمعة لأغراض متنوعة تشمل:</p>
+                <ul>
+                    <li>توفير وصيانة خدمات تطبيق سوبلكس</li>
+                    <li>تخصيص المحتوى باستخدام خوارزميتنا الذكية حسب اهتماماتك</li>
+                    <li>تمكين ميزة البث المباشر والتفاعل مع المتابعين</li>
+                    <li>إدارة مسابقات "تحدي المشاهير" وتوزيع الجوائز</li>
+                    <li>معالجة المعاملات المالية والعملات الافتراضية</li>
+                    <li>التواصل معك حول التحديثات والتنبيهات الأمنية والدعم الفني</li>
+                    <li>تحسين خدماتنا وتطوير ميزات جديدة</li>
+                    <li>توفير الفلاتر وأدوات المونتاج المتقدمة</li>
+                    <li>اكتشاف ومنع ومعالجة المشاكل التقنية</li>
+                    <li>الامتثال للالتزامات القانونية وحماية حقوقنا</li>
+                    <li>عرض إعلانات مخصصة ومحتوى ترويجي ذي صلة</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>ميزات سوبلكس الخاصة</h2>
+                <h3>تحدي المشاهير</h3>
+                <p>عند مشاركتك في مسابقات "تحدي المشاهير"، نجمع معلومات إضافية تشمل:</p>
+                <ul>
+                    <li>بيانات المشاركة والأداء في المسابقات</li>
+                    <li>معلومات الدفع لاستلام الجوائز المالية</li>
+                    <li>تفاصيل التحقق من الهوية للمشاركة في الجوائز الكبرى</li>
+                </ul>
+
+                <h3>البث المباشر</h3>
+                <p>أثناء استخدام ميزة البث المباشر، قد نجمع:</p>
+                <ul>
+                    <li>محتوى البث المباشر والتفاعلات</li>
+                    <li>معلومات المشاهدين والمتابعين</li>
+                    <li>إحصائيات الأداء ومدة البث</li>
+                </ul>
+
+                <h3>العملات الافتراضية</h3>
+                <p>نحتفظ بسجلات المعاملات المالية داخل التطبيق بما في ذلك:</p>
+                <ul>
+                    <li>رصيد العملات الافتراضية</li>
+                    <li>سجل المشتريات والهدايا</li>
+                    <li>معاملات الدفع والسحب</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>مشاركة المعلومات والكشف عنها</h2>
+                <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except in the following circumstances:</p>
+                <ul>
+                    <li><strong>Service Providers:</strong> We may share information with trusted third-party service providers who assist us in operating our website and conducting business</li>
+                    <li><strong>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights and safety</li>
+                    <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Data Security</h2>
+                <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Our security measures include:</p>
+                <ul>
+                    <li>Encryption of sensitive data in transit and at rest</li>
+                    <li>Regular security assessments and updates</li>
+                    <li>Access controls and authentication mechanisms</li>
+                    <li>Employee training on data protection practices</li>
+                </ul>
+                <p>However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+            </div>
+
+            <div class="section">
+                <h2>Your Rights and Choices</h2>
+                <p>You have certain rights regarding your personal information:</p>
+                <ul>
+                    <li><strong>Access:</strong> You can request access to your personal information</li>
+                    <li><strong>Correction:</strong> You can request correction of inaccurate information</li>
+                    <li><strong>Deletion:</strong> You can request deletion of your personal information</li>
+                    <li><strong>Portability:</strong> You can request a copy of your data in a portable format</li>
+                    <li><strong>Opt-out:</strong> You can opt-out of marketing communications at any time</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar tracking technologies to enhance your experience on our website. These technologies help us:</p>
+                <ul>
+                    <li>Remember your preferences and settings</li>
+                    <li>Analyze website traffic and usage patterns</li>
+                    <li>Provide personalized content and advertisements</li>
+                    <li>Improve website functionality and performance</li>
+                </ul>
+                <p>You can control cookie settings through your browser preferences. However, disabling cookies may affect the functionality of our website.</p>
+            </div>
+
+            <div class="section">
+                <h2>Children's Privacy</h2>
+                <p>Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information promptly.</p>
+            </div>
+
+            <div class="section">
+                <h2>International Data Transfers</h2>
+                <p>Your information may be transferred to and processed in countries other than your own. We ensure that such transfers are conducted in accordance with applicable data protection laws and implement appropriate safeguards to protect your information.</p>
+            </div>
+
+            <div class="section">
+                <h2>Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. We encourage you to review this Privacy Policy periodically for any changes.</p>
+            </div>
+
+            <div class="contact-info">
+                <h2>تواصل معنا</h2>
+                <p>إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه أو ممارسات البيانات الخاصة بنا في تطبيق سوبلكس، يرجى التواصل معنا:</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h3>البريد الإلكتروني</h3>
+                        <p>engahmedsherif39@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>رقم الهاتف</h3>
+                        <p>01023581657</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>الدعم الفني</h3>
+                        <p>support@sublex.app<br>متاح 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Scroll to top functionality
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add subtle parallax effect to floating elements
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const floatingElements = document.querySelector('.floating-elements');
+            floatingElements.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>
